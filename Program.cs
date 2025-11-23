@@ -1,5 +1,12 @@
-using System.Diagnostics;
-using System.Threading;
+﻿using nanoFramework.M5Stack;
 
-Debug.WriteLine("Hello from nanoFramework!");
-Thread.Sleep(Timeout.Infinite);
+Fire.InitializeScreen();
+Console.Clear();
+
+Console.WriteLine("    .------------.");
+Console.WriteLine("   /              \\");
+Console.Write("  |  "); Console.Write("(・)"); Console.Write("   "); Console.Write("(・)  "); Console.WriteLine(" |");
+Console.WriteLine("  |      ︶︶      |");
+Console.Write("  |   "); Console.Write("STACK"); Console.Write(" - "); Console.WriteLine("chan |");
+Console.WriteLine("   \\              /");
+Console.WriteLine("    '------------'");
