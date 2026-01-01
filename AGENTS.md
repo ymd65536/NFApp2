@@ -17,10 +17,10 @@
 
 ## デバイス情報を確認する
 
-`--serialport`は、接続されているM5Stackデバイスのシリアルポートを指定します。
+`--serialport`は、接続されているM5Stackデバイスのシリアルポートの番号を指定します。
 
 ```bash
-nanoff --serialport COM6 --identifyfirmware
+nanoff --serialport [シリアルポートの番号] --identifyfirmware
 ```
 
 シリアルポート番号がわからない場合は、以下のコマンドで接続されているシリアルデバイスの一覧を表示できます。
@@ -64,12 +64,6 @@ Windowsの場合は以下のコマンド例です。
 $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -products * -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\amd64\MSBuild.exe | select-object -first 1; nuget restore "c:/Users/Yamada/Desktop/NFApp2/NFApp2/NFApp2.sln"; & $path c:/Users/Yamada/Desktop/NFApp2/NFApp2/NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=c:\Users\Yamada\.vscode\extensions\nanoframework.vscode-nanoframework-1.0.185/dist/utils\nanoFramework\v1.0\  -p:NFMDP_PE_Verbose=false -p:NFMDP_PE_VerboseMinimize=false -verbosity:minimal /p:OutDir=c:/Users/Yamada/Desktop/NFApp2/NFApp2/bin/Debug
 ```
 
-以下のコマンドはmacOSでの例です。
-
-```bash
-msbuild NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=/Users/ymd65536/.vscode/extensions/nanoframework.vscode-nanoframework-1.0.185/dist/utils/nanoFramework/v1.0/ -p:NFMDP_PE_Verbose=false -p:NFMDP_PE_VerboseMinimize=false /p:OutDir=OutputDir /p:Configuration=Debug /p:GenerateDeploymentImage=true /v:m
-```
-
 ## デプロイ
 
 M5Stackのデプロイには、nanoffコマンドを使用します。以下のコマンド例では、M5Stack Core2に対して、指定したバイナリイメージをデプロイしています。
@@ -85,16 +79,10 @@ nanoff --listports
 
 `--target`で指定するものがわからない場合はデバイス情報を確認するセクションを参照してください。
 
-macOSでM5Stackにデプロイする例(`--target`はCore2を例にしています。):
-
-```bash
-nanoff --target M5Core2 --deploy --serialport /dev/cu.usbserial-5A490990381 --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
-```
-
 WindowsでM5Stackにデプロイする例:
 
 ```bash
-nanoff --nanodevice --deploy --serialport COM6 --image c:/Users/Yamada/Desktop/NFApp2/NFApp2/bin/Debug/NFApp2.bin
+nanoff --nanodevice --deploy --serialport [シリアルポートの番号] --image c:/Users/Yamada/Desktop/NFApp2/NFApp2/bin/Debug/NFApp2.bin
 ```
 
 ## 端末のリセット
@@ -109,4 +97,25 @@ nanoff --serialport [serialport] --reset
 
 ```bash
 nanoff --serialport [serialport] --devicedetails
+```
+
+## macOSの場合
+
+macOSでM5Stackにデプロイする際に問題が発生する場合があります。
+
+### ビルド
+
+
+以下のコマンドはmacOSでの例です。
+
+```bash
+msbuild NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=/Users/ymd65536/.vscode/extensions/nanoframework.vscode-nanoframework-1.0.185/dist/utils/nanoFramework/v1.0/ -p:NFMDP_PE_Verbose=false -p:NFMDP_PE_VerboseMinimize=false /p:OutDir=OutputDir /p:Configuration=Debug /p:GenerateDeploymentImage=true /v:m
+```
+
+### デプロイ
+
+macOSでM5Stackにデプロイする例(`--target`はCore2を例にしています。):
+
+```bash
+nanoff --target M5Core2 --deploy --serialport /dev/cu.usbserial-5A490990381 --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
 ```
