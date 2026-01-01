@@ -46,6 +46,9 @@ msbuild NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=/User
 nanoff --target M5Core2 --serialport /dev/cu.usbserial-5A490990381 --update --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
 ```
 
+nanoff はデフォルトで、更新時にデバイス内のWi-Fi設定や証明書などを消さないようにバックアップを取ろうとします。この読み込み処理がmacOSとESP32等の組み合わせで非常に遅くなる（数分かかる、またはハングする）ことがよくあります。
+
+Wi-Fi設定などが消えても問題ない場合は、--masserase を追加してください。劇的に高速化します。
 
 ```bash
 nanoff --target M5Core2 --serialport /dev/cu.usbserial-5A490990381 --baud 115200 --update --masserase --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
