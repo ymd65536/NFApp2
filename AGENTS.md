@@ -27,6 +27,8 @@ macOSの場合:
 ls /dev/cu.*
 ```
 
+`--target`で指定するものがわからない場合はデプロイを行う前に聞いてください。
+
 macOSでM5Stack Core2にデプロイする例:
 
 ```bash
