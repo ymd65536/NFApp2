@@ -239,3 +239,8 @@ Error E2002: Error executing operation with nano device.
 
 nanoFramework.Graphics 名前空間とSystem.Drawing名前空間が競合する場合があります。
 **解決方法：** nanoFramework.Graphicsをインストールされているパッケージから削除してください。NFApp2.nfprojを修正し、nugetで再インストールしてください。
+
+### nanoFramework系のパッケージが競合する場合
+
+複数のnanoFramework系パッケージが競合する場合があります。
+この場合はSystemのパッケージを利用するようにし、nanoFrameworkのパッケージを削除するようにしてください。
