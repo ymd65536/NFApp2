@@ -20,6 +20,18 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Avatar\Core\Avatar.cs" />
+    <Compile Include="Avatar\Core\BoundingRect.cs" />
+    <Compile Include="Avatar\Core\DrawContext.cs" />
+    <Compile Include="Avatar\Core\Enums.cs" />
+    <Compile Include="Avatar\Core\Face.cs" />
+    <Compile Include="Avatar\Core\Gaze.cs" />
+    <Compile Include="Avatar\Drawables\Eye.cs" />
+    <Compile Include="Avatar\Drawables\Eyebrow.cs" />
+    <Compile Include="Avatar\Drawables\IDrawable.cs" />
+    <Compile Include="Avatar\Drawables\Mouth.cs" />
+    <Compile Include="Avatar\Faces\CustomFaces.cs" />
+    <Compile Include="Avatar\Palettes\ColorPalette.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib">

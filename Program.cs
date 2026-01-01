@@ -1,18 +1,65 @@
-﻿using nanoFramework.M5Stack;
+﻿using System;
 using System.Threading;
-using System.Drawing;
+using nanoFramework.M5Stack;
+using dotNETM5StackAvatar;
+using nanoFramework.Hardware.Esp32;
+using Console = System.Console;
 
 Fire.InitializeScreen();
-var ledBar = Fire.LedBar;
 
-// Color.FromArgbを直接使う
-var red = Color.FromArgb(255, 255, 0, 0);
-var green = Color.FromArgb(255, 0, 255, 0);
-var blue = Color.FromArgb(255, 0, 0, 255);
+Console.WriteLine("M5Stack Avatar Sample Starting...");
 
-ledBar.Image.SetPixel(0, 0, red);
-ledBar.Image.SetPixel(1, 0, green);
-ledBar.Image.SetPixel(2, 0, blue);
-ledBar.Update();
+// Initialize the avatar with default face
+var avatar = new Avatar();
+avatar.Init();
+avatar.Start();
 
-Thread.Sleep(Timeout.Infinite);
+Console.WriteLine("Avatar initialized and started");
+
+// Demonstrate different expressions
+Thread.Sleep(2000);
+
+// Happy expression
+Console.WriteLine("Expression: Happy");
+avatar.SetExpression(Expression.Happy);
+Thread.Sleep(3000);
+
+// Angry expression
+Console.WriteLine("Expression: Angry");
+avatar.SetExpression(Expression.Angry);
+Thread.Sleep(3000);
+
+// Sleepy expression
+Console.WriteLine("Expression: Sleepy");
+avatar.SetExpression(Expression.Sleepy);
+Thread.Sleep(3000);
+
+// Sad expression
+Console.WriteLine("Expression: Sad");
+avatar.SetExpression(Expression.Sad);
+Thread.Sleep(3000);
+
+// Switch to SimpleFace
+Console.WriteLine("Switching to SimpleFace");
+// avatar.SetFace(new SimpleFace());
+avatar.SetExpression(Expression.Neutral);
+Thread.Sleep(3000);
+
+// Switch to GirlyFace
+Console.WriteLine("Switching to GirlyFace");
+// avatar.SetFace(new GirlyFace());
+avatar.SetExpression(Expression.Happy);
+Thread.Sleep(3000);
+
+// Demonstrate speech
+Console.WriteLine("Starting speech animation");
+for (int i = 0; i < 10; i++)
+{
+    avatar.SetMouthOpenRatio((float)Math.Abs(Math.Sin(i * 0.5)));
+    Thread.Sleep(200);
+}
+
+// Back to neutral
+avatar.SetExpression(Expression.Neutral);
+
+Console.WriteLine("Sample completed. Avatar will continue running.");
