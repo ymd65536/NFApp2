@@ -61,7 +61,7 @@ NanoFrameworkProjectSystemPathはextensionのパスに合わせて変更して�
 Windowsの場合は以下のコマンド例です。
 
 ```bash
-$path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -products * -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\amd64\MSBuild.exe | select-object -first 1; nuget restore "c:/Users/Yamada/Desktop/NFApp2/NFApp2/NFApp2.sln"; & $path c:/Users/Yamada/Desktop/NFApp2/NFApp2/NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=c:\Users\Yamada\.vscode\extensions\nanoframework.vscode-nanoframework-1.0.185/dist/utils\nanoFramework\v1.0\   -p:NFMDP_PE_Verbose=false -p:NFMDP_PE_VerboseMinimize=false -verbosity:minimal /p:OutDir=c:/Users/Yamada/Desktop/NFApp2/NFApp2/OutputDir/
+$path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -products * -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\amd64\MSBuild.exe | select-object -first 1; nuget restore "c:/Users/Yamada/Desktop/NFApp2/NFApp2/NFApp2.sln"; & $path c:/Users/Yamada/Desktop/NFApp2/NFApp2/NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=c:\Users\Yamada\.vscode\extensions\nanoframework.vscode-nanoframework-1.0.185/dist/utils\nanoFramework\v1.0\  -p:NFMDP_PE_Verbose=false -p:NFMDP_PE_VerboseMinimize=false -verbosity:minimal /p:OutDir=c:/Users/Yamada/Desktop/NFApp2/NFApp2/bin/Debug
 ```
 
 以下のコマンドはmacOSでの例です。
