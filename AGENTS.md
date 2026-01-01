@@ -10,6 +10,7 @@
 ## 前提
 
 - 最初にデバイス情報を確認してください
+  - ESP32_PSRAM_REV3というターゲット名が表示された場合は`M5Core2`として認識してください
 
 ## デバイス情報を確認する
 
@@ -43,6 +44,8 @@ M5Stackデバイスに対応したブートローダを書き込むには、以�
 ターゲット名の一覧は`ターゲットを認識する`セクションを参照してください。
 
 `[serialport]`には`nanoff --listports`で確認したシリアルポートを指定してください。
+
+--fwversionはわからない場合は省略可能です。
 
 ```bash
 nanoff --update --target M5Core2 --fwversion 1.14.0.179 --serialport [serialport] --baud 115200 --masserase
@@ -88,5 +91,5 @@ nanoff --target M5Core --serialport /dev/cu.usbserial-5A490990381 --baud 115200 
 WindowsでM5Stack Fireにデプロイする例:
 
 ```bash
-nanoff --nanodevice --deploy --serialport COM6 --image c:/Users/Yamada/Desktop/NFApp2/NFApp2/OutputDir/NFApp2.bin
+nanoff --nanodevice --deploy --serialport COM6 --image c:/Users/Yamada/Desktop/NFApp2/NFApp2/bin/Debug/NFApp2.bin
 ```
