@@ -1,15 +1,33 @@
 
 ## M5StackをnanoFrameworkで使うための指示
 
+- 前提
 - ターゲットを確認する
+- ブートローダの書き込み
 - デプロイ
 
-### ターゲットを認識する
+## 前提
 
-nanoff利用できるターゲットの一覧を表示するには、以下のコマンドを実行します。
+- Fireにデプロイする場合は、`--target M5Core2`の指定が必要です
 
-```
+## ターゲットを認識する
+
+nanoff利用できるターゲットの一覧を表示するには、以下のコマンドを実行して確認してください。
+
+```bash
 nanoff --listtargets
+```
+
+## ブートローダの書き込み
+
+M5Stackデバイスに対応したブートローダを書き込むには、以下のコマンドを使用します。
+書き込みの際は、デバイスが接続されているシリアルポートを指定する必要があります。
+`ターゲットを認識する`セクションで確認したターゲット名を`--target`オプションに指定してください。
+
+`[serialport]`には`nanoff --listports`で確認したシリアルポートを指定してください。
+
+```bash
+nanoff --update --target M5Core2 --fwversion 1.14.0.179 --serialport [serialport] --baud 115200 --masserase
 ```
 
 ## デプロイ
@@ -32,5 +50,3 @@ macOSでM5Stack Core2にデプロイする例:
 ```bash
 nanoff --target M5Core --serialport /dev/cu.usbserial-5A490990381 --baud 115200 --masserase --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
 ```
-
-Fireにデプロイする場合は、`--target M5Core2`で良いです。
