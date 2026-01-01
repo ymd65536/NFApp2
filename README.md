@@ -51,5 +51,5 @@ nanoff はデフォルトで、更新時にデバイス内のWi-Fi設定や証�
 Wi-Fi設定などが消えても問題ない場合は、--masserase を追加してください。劇的に高速化します。
 
 ```bash
-nanoff --target M5Core2 --serialport /dev/cu.usbserial-5A490990381 --baud 115200 --update --masserase --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
+nanoff --update --target M5Core2 --serialport /dev/cu.usbserial-5A490990381 --baud 115200 --masserase --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
 ```
