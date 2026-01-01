@@ -234,3 +234,8 @@ Error E2002: Error executing operation with nano device.
 1. ビルドが正常に完了していることを確認してください（`bin\Debug\NFApp2.exe` が存在するか確認）
 2. デプロイコマンドのパスが正しいことを確認してください
 3. パスにスペースが含まれている場合は、ダブルクォーテーションで囲んでください
+
+### System.Drawing名前空間が競合する場合
+
+nanoFramework.Graphics 名前空間とSystem.Drawing名前空間が競合する場合があります。
+**解決方法：** nanoFramework.Graphicsをインストールされているパッケージから削除してください。NFApp2.nfprojを修正し、nugetで再インストールしてください。
