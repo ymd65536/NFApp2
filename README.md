@@ -45,3 +45,8 @@ msbuild NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=/User
 ```bash
 nanoff --target M5Core2 --serialport /dev/cu.usbserial-5A490990381 --update --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
 ```
+
+
+```bash
+nanoff --target M5Core2 --serialport /dev/cu.usbserial-5A490990381 --baud 115200 --update --masserase --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
+```
