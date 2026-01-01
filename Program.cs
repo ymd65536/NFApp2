@@ -7,59 +7,28 @@ using Console = System.Console;
 
 Fire.InitializeScreen();
 
-Console.WriteLine("M5Stack Avatar Sample Starting...");
-
 // Initialize the avatar with default face
 var avatar = new Avatar();
+
+// Use rectangular mouth (keep square/rect style) and make it open/close faster
+avatar.GetFace().SetMouth(new RectMouth(50, 90, 4, 60));
+
+// Start avatar drawing/animation
 avatar.Init();
-avatar.Start();
 
-Console.WriteLine("Avatar initialized and started");
-
-// Demonstrate different expressions
-Thread.Sleep(200);
-
-// Happy expression
-Console.WriteLine("Expression: Happy");
-avatar.SetExpression(Expression.Happy);
-Thread.Sleep(300);
-
-// Angry expression
-Console.WriteLine("Expression: Angry");
-avatar.SetExpression(Expression.Angry);
-Thread.Sleep(300);
-
-// Sleepy expression
-Console.WriteLine("Expression: Sleepy");
-avatar.SetExpression(Expression.Sleepy);
-Thread.Sleep(300);
-
-// Sad expression
-Console.WriteLine("Expression: Sad");
-avatar.SetExpression(Expression.Sad);
-Thread.Sleep(3000);
-
-// Switch to SimpleFace
-Console.WriteLine("Switching to SimpleFace");
-// avatar.SetFace(new SimpleFace());
-avatar.SetExpression(Expression.Neutral);
-Thread.Sleep(300);
-
-// Switch to GirlyFace
-Console.WriteLine("Switching to GirlyFace");
-// avatar.SetFace(new GirlyFace());
-avatar.SetExpression(Expression.Happy);
-Thread.Sleep(300);
-
-// Demonstrate speech
-Console.WriteLine("Starting speech animation");
-for (int i = 0; i < 10; i++)
+// Fast continuous mouth animation with periodic counter reset
+int i = 0;
+while (true)
 {
-    avatar.SetMouthOpenRatio((float)Math.Abs(Math.Sin(i * 0.5)));
-    Thread.Sleep(200);
+    // 速い振動: sin の係数を大きくし、Sleep を短くする
+    float ratio = (float)((Math.Sin(i * 0.5) + 1.0) / 2.0); // 0..1 に正規化
+    avatar.SetMouthOpenRatio(ratio);
+
+    i++;
+    if (i >= 1000) // 定期的に初期化
+    {
+        i = 0;
+    }
+
+    Thread.Sleep(50); // 50ms ごとに更新 → 高速な開閉
 }
-
-// Back to neutral
-avatar.SetExpression(Expression.Neutral);
-
-Console.WriteLine("Sample completed. Avatar will continue running.");
