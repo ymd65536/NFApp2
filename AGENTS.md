@@ -85,7 +85,7 @@ nanoff --listports
 macOSでM5Stack Core2にデプロイする例:
 
 ```bash
-nanoff --target M5Core --serialport /dev/cu.usbserial-5A490990381 --baud 115200 --masserase --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
+nanoff --target M5Core2 --serialport /dev/cu.usbserial-5A490990381 --baud 115200 --masserase --deploy --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
 ```
 
 WindowsでM5Stack Fireにデプロイする例:
