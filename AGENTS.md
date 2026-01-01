@@ -1,3 +1,8 @@
+# M5StackをnanoFrameworkで使う方法
+
+このドキュメントでは、M5StackデバイスをnanoFrameworkで使用するための手順とガイドを提供します。
+
+ユーザーとの会話には日本語で回答してください。
 
 ## nanoFramework プログラミングガイド
 
@@ -42,12 +47,17 @@ Console.Clear();
 - 最初にデバイス情報を確認してください
   - `ESP32_PSRAM_REV3`あるいは`ESP32_REV3`というターゲット名が表示された場合は`M5Core2`として認識してください
 - macOSでプログラムをデプロイしてもうまくいかない可能性があります
-- 推測で行動しないでください
 - **デプロイにはM5Stackで動作する.binファイルを使用してください**。.exeファイルはM5Stackで動作しません
 
 ## デバイス情報を確認する
 
 `--serialport`は、接続されているM5Stackデバイスのシリアルポートの番号を指定します。
+
+実機で確認した例（ESP32_PSRAM_REV3でM5Core2扱い）：
+
+```bash
+nanoff --serialport COM6 --identifyfirmware
+```
 
 ```bash
 nanoff --serialport [シリアルポートの番号] --identifyfirmware
@@ -98,7 +108,13 @@ nanoff --update --target M5Core2 --fwversion 1.14.0.179 --serialport [serialport
 NanoFrameworkProjectSystemPathは実際のextensionのパスに合わせて変更してください。
 パス内のバックスラッシュ `\` とスラッシュ `/` の混在に注意してください。
 
-以下のコマンド例です（実際のバージョンとユーザーパスに合わせて調整してください）：
+以下のコマンド例です（実際のバージョンとユーザーパスに合わせて調整してください）。`GenerateDeploymentImage=true` を付与すると `bin\Debug\NFApp2.bin` が生成されます。
+
+```bash
+$path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -products * -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\amd64\MSBuild.exe | select-object -first 1; & $path "c:\Users\Yamada\Desktop\NFApp2\NFApp2\NFApp2.nfproj" -t:Rebuild -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath="C:\Users\Yamada\.vscode\extensions\nanoframework.vscode-nanoframework-1.0.185\dist\utils\nanoFramework\v1.0\" /p:GenerateDeploymentImage=true /p:Configuration=Debug -verbosity:minimal
+```
+
+従来のsln指定例（.exeのみ生成する場合。デプロイ用.binは出ません）:
 
 ```bash
 $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -products * -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\amd64\MSBuild.exe | select-object -first 1; nuget restore "c:\Users\[ユーザー名]\Desktop\NFApp2\NFApp2\NFApp2.sln"; & $path "c:\Users\[ユーザー名]\Desktop\NFApp2\NFApp2\NFApp2.sln" -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath="c:\Users\[ユーザー名]\.vscode\extensions\nanoframework.vscode-nanoframework-1.0.185\dist\utils\nanoFramework\v1.0\" -p:NFMDP_PE_Verbose=false -p:NFMDP_PE_VerboseMinimize=false -verbosity:minimal /p:OutDir="c:\Users\[ユーザー名]\Desktop\NFApp2\NFApp2\bin\Debug"
@@ -124,7 +140,7 @@ $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.ex
 
 M5Stackのデプロイには、nanoffコマンドを使用します。VS Code拡張が生成した .bin ファイルをM5Stack デバイスにデプロイします。
 
-### シリアルポート番号の確認
+### シリアルポート番号（COM番号）の確認
 
 デプロイ前に、接続されているM5Stackデバイスのシリアルポート番号を確認してください。
 
@@ -137,6 +153,14 @@ nanoff --listports
 ### Windowsでのデプロイ
 
 M5Stackへのデプロイには、VS Code拡張が生成する `.bin` ファイルを使用してください。.exeファイルではM5Stackで動作しません。
+
+実際の成功例（M5Core2相当デバイス、COM6、ターゲット未指定で`--nanodevice --deploy`を併用）：
+
+```bash
+nanoff --nanodevice --deploy --serialport COM6 --image "c:\Users\Yamada\Desktop\NFApp2\NFApp2\bin\Debug\NFApp2.bin"
+```
+
+`--nanodevice` と `--target` の併用はエラーになるため、nanodevice指定に統一してください。
 
 ```bash
 nanoff --nanodevice --deploy --serialport COM6 --image "c:\Users\[ユーザー名]\Desktop\NFApp2\NFApp2\bin\Debug\NFApp2.bin"
