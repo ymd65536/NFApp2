@@ -5,3 +5,6 @@ Console.Clear();
 
 Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
 Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
+Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
+Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
+Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
