@@ -85,13 +85,13 @@ nanoff --listports
 
 `--target`で指定するものがわからない場合はデバイス情報を確認するセクションを参照してください。
 
-macOSでM5Stack Core2にデプロイする例:
+macOSでM5Stackにデプロイする例(`--target`はCore2を例にしています。):
 
 ```bash
 nanoff --target M5Core2 --deploy --serialport /dev/cu.usbserial-5A490990381 --image /Users/ymd65536/Desktop/NFApp2/bin/Debug/NFApp2.bin
 ```
 
-WindowsでM5Stack Fireにデプロイする例:
+WindowsでM5Stackにデプロイする例:
 
 ```bash
 nanoff --nanodevice --deploy --serialport COM6 --image c:/Users/Yamada/Desktop/NFApp2/NFApp2/bin/Debug/NFApp2.bin
