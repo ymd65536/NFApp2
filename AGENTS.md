@@ -12,6 +12,8 @@
 - 最初にデバイス情報を確認してください
   - ESP32_PSRAM_REV3というターゲット名が表示された場合は`M5Core2`として認識してください
 - macOSでプログラムをデプロイしてもうまくいかない可能性があります
+- 推測で行動しないでください
+- アプリケーションは.binファイルですので.binを指定してください
 
 ## デバイス情報を確認する
 
@@ -65,7 +67,7 @@ $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.ex
 以下のコマンドはmacOSでの例です。
 
 ```bash
-msbuild NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=/Users/ymd65536/.vscode/extensions/nanoframework.vscode-nanoframework-1.0.185/dist/utils/nanoFramework/v1.0/ -p:NFMDP_PE_Verbose=false -p:NFMDP_PE_VerboseMinimize=false /p:OutDir=OutputDir/ /p:Configuration=Debug /p:GenerateDeploymentImage=true /v:m
+msbuild NFApp2.sln -p:platform="Any CPU" /p:NanoFrameworkProjectSystemPath=/Users/ymd65536/.vscode/extensions/nanoframework.vscode-nanoframework-1.0.185/dist/utils/nanoFramework/v1.0/ -p:NFMDP_PE_Verbose=false -p:NFMDP_PE_VerboseMinimize=false /p:OutDir=OutputDir /p:Configuration=Debug /p:GenerateDeploymentImage=true /v:m
 ```
 
 ## デプロイ
@@ -93,4 +95,18 @@ WindowsでM5Stack Fireにデプロイする例:
 
 ```bash
 nanoff --nanodevice --deploy --serialport COM6 --image c:/Users/Yamada/Desktop/NFApp2/NFApp2/bin/Debug/NFApp2.bin
+```
+
+## 端末のリセット
+
+`[serialport]`には`nanoff --listports`で確認したシリアルポートを指定してください。
+
+```bash
+nanoff --serialport [serialport] --reset
+```
+
+## デバイスの詳細情報を確認する
+
+```bash
+nanoff --serialport [serialport] --devicedetails
 ```
