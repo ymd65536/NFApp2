@@ -1,10 +1,12 @@
 ﻿using nanoFramework.M5Stack;
+using System.Threading;
+using System.Drawing;
 
 Fire.InitializeScreen();
-Console.Clear();
+var ledBar = Fire.LedBar;
 
-Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
-Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
-Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
-Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
-Console.WriteLine("Hello, nanoFramework M5Stack Fire!");
+// まず定義済みの色でテスト
+ledBar.Image.SetPixel(0, 0, Color.Red);
+ledBar.Update();
+
+Thread.Sleep(Timeout.Infinite);

@@ -34,6 +34,7 @@ Console.Clear();
 - ターゲットを確認する
 - ブートローダの書き込み
 - デプロイ
+- パッケージのリストア
 
 ## 前提
 
@@ -194,6 +195,12 @@ nanoff --target M5Core2 --deploy --serialport /dev/cu.usbserial-5A490990381 --im
 ```
 
 **.binファイルを使用してください**。.exeファイルはM5Stackで動作しません。
+
+### パッケージのリストア
+
+```bash
+nuget restore "c:\Users\Yamada\Desktop\NFApp2\NFApp2\NFApp2.sln"
+```
 
 ## トラブルシューティング
 
