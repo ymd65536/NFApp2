@@ -117,6 +117,8 @@ $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.ex
 
 **注意：** M5Stackへのデプロイには、VS Code拡張が生成する.binファイルが必要です。.exeファイルはM5Stackで動作しません
 
+ビルドが失敗したら、作業を中断してください。
+
 ## デプロイ
 
 M5Stackのデプロイには、nanoffコマンドを使用します。VS Code拡張が生成した .bin ファイルをM5Stack デバイスにデプロイします。
