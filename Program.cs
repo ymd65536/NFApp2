@@ -1,11 +1,15 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using nanoFramework.M5Stack;
 using dotNETM5StackAvatar;
 using nanoFramework.Hardware.Esp32;
-using Console = System.Console;
+
+using Console = nanoFramework.M5Stack.Console;
+using Math = System.Math;
 
 Fire.InitializeScreen();
+Console.Clear();
+Console.WriteLine("Fast Mouth Animation Example");
+Thread.Sleep(2000);
 
 // Initialize the avatar with default face
 var avatar = new Avatar();
@@ -25,9 +29,10 @@ while (true)
     avatar.SetMouthOpenRatio(ratio);
 
     i++;
-    if (i >= 1000) // 定期的に初期化
+    if (i >= 100) // 定期的に初期化
     {
         i = 0;
+        Console.Clear();
     }
 
     Thread.Sleep(50); // 50ms ごとに更新 → 高速な開閉

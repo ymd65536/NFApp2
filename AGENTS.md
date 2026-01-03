@@ -32,6 +32,37 @@ Fire.InitializeScreen();
 Console.Clear();
 ```
 
+名前空間の`using System`を使うと、Consoleクラスが競合する可能性があります。
+
+出力されるエラーの例
+
+```text
+error CS0104: 'Console' is an ambiguou
+s reference between 'nanoFramework.M5Stack.Console' and 'System.Console'
+```
+
+エラーが発生した場合は、次の選択肢のいずれかを使用して解決してください。
+
+PCのコンソールに出力する場合は、`using Console = System.Console;`のようにエイリアスを設定してください。
+
+```csharp
+using Console = System.Console;
+```
+
+M5Stackの画面に出力する場合は、`using Console = nanoFramework.M5Stack.Console;`のようにエイリアスを設定してください。
+
+```csharp
+using Console = nanoFramework.M5Stack.Console;
+```
+
+### Math
+
+System.Math名前空間を使用する場合は、以下のようにインポートしてください。
+
+```csharp
+using Math = System.Math;
+```
+
 ## M5StackをnanoFrameworkで使うための指示
 
 - 前提
@@ -104,6 +135,8 @@ nanoff --update --target M5Core2 --fwversion 1.14.0.179 --serialport [serialport
 - **VS Code拡張のパスを確認** - `~/.vscode/extensions` ディレクトリから `nanoframework.vscode-nanoframework-*` フォルダを確認し、バージョン番号を把握してください
 
 ### Windowsでのビルド
+
+`dotnet msbuild` コマンドを使用しないで、Visual StudioのMSBuildを直接呼び出してビルドを行います。
 
 NanoFrameworkProjectSystemPathは実際のextensionのパスに合わせて変更してください。
 パス内のバックスラッシュ `\` とスラッシュ `/` の混在に注意してください。
