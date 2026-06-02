@@ -1,5 +1,4 @@
 ﻿using dotNETM5StackAvatar;
-using nanoFramework.Hardware.Esp32;
 using nanoFramework.M5Stack;
 using System.Drawing;
 using System.Threading;
